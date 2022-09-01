@@ -6,7 +6,7 @@ import ArchivedNotes from './ArchivedNotes';
 function Body({ notes, onDelete, onAddNote }) {
   return (
     <div className='note-app__body'>
-      <Input addNote={onAddNote} />
+      <Input onAddNote={onAddNote} />
       <h2>Catatan Aktif</h2>
       <ActiveNotes notes={notes} onDelete={onDelete} />
       <h2>Arsip</h2>

@@ -40,7 +40,7 @@ class NotesApp extends React.Component {
     return (
       <>
         <Header />
-        <Body notes={this.state.notes} onDelete={this.onDeleteHandler} onAddNote={this.onAddNoteHandler} />
+        <Body notes={this.state.notes} onDelete={this.onDeleteHandler} addNote={this.onAddNoteHandler} />
       </>
     );
   }

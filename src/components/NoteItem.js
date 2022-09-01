@@ -3,11 +3,11 @@ import NoteItemContent from './NoteItemContent';
 import NoteItemAction from './NoteItemAction';
 import { showFormattedDate } from '../utils/index';
 
-function NoteItem({ title, createdAt, body }) {
+function NoteItem({ title, createdAt, body, id, onDelete }) {
   return (
     <div className="note-item">
       <NoteItemContent title={title} date={showFormattedDate(createdAt)} body={body}/>
-      <NoteItemAction />
+      <NoteItemAction id={id} onDelete={onDelete} />
     </div>
   );
 }

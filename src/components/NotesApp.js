@@ -3,15 +3,29 @@ import Header from './Header';
 import Body from './Body';
 import { getInitialData } from '../utils/index';
  
-function NotesApp() {
-  const notes = getInitialData();
+class NotesApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: getInitialData(),
+    }
+  
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
+  }
+
+  onDeleteHandler(id) {
+    const notes = this.state.notes.filter(note => note.id !== id);
+    this.setState({ notes });
+  }
  
-  return (
-    <div>
-      <Header />
-      <Body notes={notes}/>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <Header />
+        <Body notes={this.state.notes} onDelete={this.onDeleteHandler} />
+      </div>
+    );
+  }
 }
  
 export default NotesApp;

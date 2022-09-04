@@ -1,9 +1,10 @@
 import React from 'react';
+import SearchBox from './SearchBox';
 
-function Search() {
+function Search({ onSearch }) {
   return (
     <div className='note-search'>
-      <input placeholder='Cari catatan...'></input>
+      <SearchBox search={onSearch} />
     </div>
   );
 }

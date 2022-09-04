@@ -2,17 +2,19 @@ import React from 'react';
 import Header from './Header';
 import Body from './Body';
 import { getInitialData } from '../utils/index';
- 
+
 class NotesApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       notes: getInitialData(),
+      filtered: getInitialData(),
     }
-  
+
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
     this.onArchiveHandler = this.onArchiveHandler.bind(this);
+    this.onSearchHandler = this.onSearchHandler.bind(this);
   }
 
   onDeleteHandler(id) {
@@ -43,15 +45,23 @@ class NotesApp extends React.Component {
     notes[noteId].archived = !notes[noteId].archived;
     this.setState({ notes });
   }
- 
+
+  onSearchHandler(query) {
+    this.setState((prevState) => {
+      return {
+        filtered: prevState.notes.filter(note => note.title.toLowerCase().includes(query.toLowerCase()))
+      }
+    });
+  }
+
   render() {
     return (
       <>
-        <Header />
-        <Body notes={this.state.notes} onDelete={this.onDeleteHandler} addNote={this.onAddNoteHandler} onArchive={this.onArchiveHandler} />
+        <Header onSearch={this.onSearchHandler} />
+        <Body notes={this.state.filtered} onDelete={this.onDeleteHandler} addNote={this.onAddNoteHandler} onArchive={this.onArchiveHandler} />
       </>
     );
   }
 }
- 
+
 export default NotesApp;
